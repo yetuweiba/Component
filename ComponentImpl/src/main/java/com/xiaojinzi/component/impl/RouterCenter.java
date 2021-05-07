@@ -381,7 +381,7 @@ public class RouterCenter implements IComponentCenterRouter {
     @Override
     public void unregister(@NonNull IComponentHostRouter hostRouter) {
         Utils.checkNullPointer(hostRouter);
-        hostRouterMap.remove(hostRouter);
+        hostRouterMap.remove(hostRouter.getHost());
         Map<String, RouterBean> childRouterMap = hostRouter.getRouterMap();
         if (childRouterMap != null) {
             // key = host/path
@@ -407,7 +407,9 @@ public class RouterCenter implements IComponentCenterRouter {
     public IComponentHostRouter findUiRouter(String host) {
         try {
             if (Component.getConfig().isOptimizeInit()) {
-                return ASMUtil.findModuleRouterAsmImpl(host);
+                return ASMUtil.findModuleRouterAsmImpl(
+                        ComponentUtil.transformHostForClass(host)
+                );
             } else {
                 Class<? extends IComponentHostRouter> clazz = null;
                 String className = ComponentUtil.genHostRouterClassName(host);

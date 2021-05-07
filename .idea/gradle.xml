@@ -14,15 +14,17 @@
             <option value="$PROJECT_DIR$/ComponentApi" />
             <option value="$PROJECT_DIR$/ComponentCompiler" />
             <option value="$PROJECT_DIR$/ComponentImpl" />
+            <option value="$PROJECT_DIR$/ComponentKtImpl" />
             <option value="$PROJECT_DIR$/ComponentPlugin" />
             <option value="$PROJECT_DIR$/ComponentRxImpl" />
-            <option value="$PROJECT_DIR$/Module1" />
-            <option value="$PROJECT_DIR$/Module1run" />
-            <option value="$PROJECT_DIR$/Module2" />
-            <option value="$PROJECT_DIR$/ModuleBase" />
-            <option value="$PROJECT_DIR$/ModuleHelp" />
-            <option value="$PROJECT_DIR$/ModuleUser" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/Demo" />
+            <option value="$PROJECT_DIR$/Demo/Module1" />
+            <option value="$PROJECT_DIR$/Demo/Module1run" />
+            <option value="$PROJECT_DIR$/Demo/Module2" />
+            <option value="$PROJECT_DIR$/Demo/ModuleBase" />
+            <option value="$PROJECT_DIR$/Demo/ModuleHelp" />
+            <option value="$PROJECT_DIR$/Demo/ModuleUser" />
+            <option value="$PROJECT_DIR$/Demo/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

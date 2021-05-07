@@ -49,6 +49,7 @@ public class ComponentConstants {
     public static final String FRAGMENT_CENTER_CALL_CLASS_NAME = "com.xiaojinzi.component.impl.fragment.FragmentCenter";
     public static final String CALLABLE_CLASS_NAME = "com.xiaojinzi.component.support.Callable";
     public static final String SINGLETON_CALLABLE_CLASS_NAME = "com.xiaojinzi.component.support.SingletonCallable";
+    public static final String DECORATOR_CALLABLE_CLASS_NAME = "com.xiaojinzi.component.support.DecoratorCallable";
     public static final String FUNCTION1_CLASS_NAME = "com.xiaojinzi.component.support.Function1";
     public static final String SINGLETON_FUNCTION1_CLASS_NAME = "com.xiaojinzi.component.support.SingletonFunction1";
 
@@ -76,6 +77,9 @@ public class ComponentConstants {
     public static final String JAVA_HASHSET = "java.util.HashSet";
     public static final String JAVA_SERIALIZABLE = "java.io.Serializable";
     public static final String JAVA_CHARSEQUENCE = "java.lang.CharSequence";
+
+    public static final String KOTLIN_METADATA = "kotlin.Metadata";
+    public static final String KOTLIN_JVMFIELD = "kotlin.jvm.JvmField";
 
     // RxJava 几种 Observable
 

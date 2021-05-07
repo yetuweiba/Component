@@ -5,13 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 
 import com.xiaojinzi.component.Component;
-import com.xiaojinzi.component.Config;
 import com.xiaojinzi.component.ComponentUtil;
+import com.xiaojinzi.component.Config;
 import com.xiaojinzi.component.application.IComponentCenterApplication;
 import com.xiaojinzi.component.application.IComponentHostApplication;
-import com.xiaojinzi.component.impl.RouterCenter;
-import com.xiaojinzi.component.impl.fragment.FragmentCenter;
-import com.xiaojinzi.component.impl.interceptor.InterceptorCenter;
+import com.xiaojinzi.component.impl.service.ServiceManager;
 import com.xiaojinzi.component.support.ASMUtil;
 import com.xiaojinzi.component.support.LogUtil;
 import com.xiaojinzi.component.support.Utils;
@@ -141,7 +139,9 @@ public class ModuleManager implements IComponentCenterApplication {
         IComponentHostApplication result = null;
         if (Component.getConfig().isOptimizeInit()) {
             LogUtil.log("\"" + host + "\" will try to load by bytecode");
-            result = ASMUtil.findModuleApplicationAsmImpl(host);
+            result = ASMUtil.findModuleApplicationAsmImpl(
+                    ComponentUtil.transformHostForClass(host)
+            );
         } else {
             LogUtil.log("\"" + host + "\" will try to load by reflection");
             if (result == null) {
@@ -188,18 +188,23 @@ public class ModuleManager implements IComponentCenterApplication {
         for (IComponentHostApplication hostApplication : moduleApplicationMap.values()) {
             hostApplication.onModuleChanged(Component.getApplication());
         }
+        // 触发自动初始化
+        Utils.postActionToWorkThread(new Runnable() {
+            @Override
+            public void run() {
+                ServiceManager.autoInitService();
+            }
+        });
     }
 
     /**
-     * 使用者应该在开发阶段调用这个函数来检查以下的问题：
-     * 1.路由表在不同的子路由表中是否有重复
-     * 2.服务在不同模块中的声明是否也有重复的名称
+     * 请使用 {@link Component#check()}
+     *
+     * @deprecated 未来版本会删除
      */
+    @Deprecated
     public void check() {
-        RouterCenter.getInstance().check();
-        InterceptorCenter.getInstance().check();
-        FragmentCenter.getInstance().check();
-        // Service 不需要检查, 反正如果重复了就覆盖. 没得选
+        Component.check();
     }
 
 }

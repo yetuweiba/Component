@@ -1,3 +1,25 @@
+#### [v1.9.0-beta2](https://github.com/xiaojinzi123/Component/releases/tag/v1.9.0-beta2)
+- 自动注入支持了 Kotlin 文件的属性了. 不必再使用 @JvmField 注解标记了
+- @ServiceAnno 增加了 autoInit 属性, 这个属性可以让 Service 自动初始化在模块加载之后. 每一个模块加载/卸载都会触发
+
+#### [v1.9.0-beta1](https://github.com/xiaojinzi123/Component/releases/tag/v1.9.0-beta1)
+- 支持了 Service 的装饰功能. 使用 @ServiceDecoratorAnno 注解标记一个类.
+- Service 装饰功能支持 Condition.
+- 修复之前的版本卸载模块但是路由卸载不掉的问题
+
+#### [v1.8.8](https://github.com/xiaojinzi123/Component/releases/tag/v1.8.8)
+- kotlin 的协程模块上线啦
+- 这个版本及其之前的版本. 会有模块卸载的时候, 路由表卸载不了的问题
+    - 由于真实项目中不会有模块卸载的情况. 所以这个版本暂时未修复. 之前的版本会修复
+    - 至于为什么真实项目中不会卸载. 原因是：卸载之后会有无法预期的问题. 正确的做法是在启动的时候只加载你需要加载的模块. 而不是后续去卸载!
+- 修复 Utils 中的 isCauseBy 方法的 bug
+
+#### [v1.8.6](https://github.com/xiaojinzi123/Component/releases/tag/v1.8.6)
+- Service 支持了多实现. 一个接口. 可以有问个实现类. 但是需要用 name 区分
+
+#### [v1.8.3.6](https://github.com/xiaojinzi123/Component/releases/tag/v1.8.3.5)
+- [#79](https://github.com/xiaojinzi123/Component/issues/79) 为了解决死锁. 放弃了 Fragment 和 服务发现的创建一定保证主线程的逻辑. 避免死锁发生. 
+- host 的配置支持了任意的字符串, 比如: www.baidu.com, www.module.user. 没有任何限制了
 
 #### [v1.8.3.5](https://github.com/xiaojinzi123/Component/releases/tag/v1.8.3.5)
 - 增加当发生死锁的时候, 错误信息的报错, 方便用户排查. 具体可以看 [#79](https://github.com/xiaojinzi123/Component/issues/79) 这个 issue

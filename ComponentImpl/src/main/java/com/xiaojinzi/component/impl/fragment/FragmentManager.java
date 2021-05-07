@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 
 import com.xiaojinzi.component.anno.support.CheckClassNameAnno;
 import com.xiaojinzi.component.support.Function1;
-import com.xiaojinzi.component.support.CallNullable;
 import com.xiaojinzi.component.support.Utils;
 
 import java.util.Collections;
@@ -27,7 +26,7 @@ public class FragmentManager {
     }
 
     /**
-     * Service 的集合
+     * Service 的集合, 线程安全
      */
     private static Map<String, Function1<Bundle, ? extends Fragment>> map =
             Collections.synchronizedMap(new HashMap<String, Function1<Bundle, ? extends Fragment>>());
@@ -62,18 +61,12 @@ public class FragmentManager {
     @AnyThread
     public static Fragment get(@NonNull final String flag, @Nullable final Bundle bundle) {
         Utils.checkNullPointer(flag, "fragment flag");
-        return Utils.mainThreadCallNullable(new CallNullable<Fragment>() {
-            @NonNull
-            @Override
-            public Fragment get() {
-                Function1<Bundle, ? extends Fragment> function = map.get(flag);
-                if (function == null) {
-                    return null;
-                } else {
-                    return function.apply(bundle);
-                }
-            }
-        });
+        Function1<Bundle, ? extends Fragment> function = map.get(flag);
+        if (function == null) {
+            return null;
+        } else {
+            return function.apply(bundle);
+        }
     }
 
 }
